@@ -1,12 +1,12 @@
 import unittest
 
-from src.IntensitySegments import IntensitySegments
+from src.IntensitySegmentsImpl import IntensitySegments, IntensitySegmentsImpl
 
 
 class TestIntensitySegments(unittest.TestCase):
 
     def test_set_1(self):
-        segments = IntensitySegments()
+        segments: IntensitySegments = IntensitySegmentsImpl()
         self.assertEqual(segments.toString(), [])
         segments.add(10, 30, 1)
         self.assertEqual(segments.toString(), [[10, 1], [30, 0]])
@@ -16,7 +16,7 @@ class TestIntensitySegments(unittest.TestCase):
         self.assertEqual(segments.toString(), [[10, -1], [20, 0], [30, -1], [40, 0]])
 
     def test_set_2(self):
-        segments = IntensitySegments()
+        segments: IntensitySegments = IntensitySegmentsImpl()
         self.assertEqual(segments.toString(), [])
         segments.add(10, 30, 1)
         self.assertEqual(segments.toString(), [[10, 1], [30, 0]])
@@ -28,7 +28,7 @@ class TestIntensitySegments(unittest.TestCase):
         self.assertEqual(segments.toString(), [[10, -1], [20, 0], [30, -1], [40, 0]])
 
     def test_set_no_change(self):
-        segments = IntensitySegments()
+        segments: IntensitySegments = IntensitySegmentsImpl()
         self.assertEqual(segments.toString(), [])
         segments.add(10, 30, 2)
         self.assertEqual(segments.toString(), [[10, 2], [30, 0]])
@@ -36,7 +36,7 @@ class TestIntensitySegments(unittest.TestCase):
         self.assertEqual(segments.toString(), [[10, 2], [30, 0]])
 
     def test_set_1(self):
-        segments = IntensitySegments()
+        segments: IntensitySegments = IntensitySegmentsImpl()
         self.assertEqual(segments.toString(), [])
         segments.add(10, 30, 2)
         self.assertEqual(segments.toString(), [[10, 2], [30, 0]])
@@ -46,7 +46,7 @@ class TestIntensitySegments(unittest.TestCase):
         self.assertEqual(segments.toString(), [[10, 2], [15, 5], [35, 1], [40, 0]])
 
     def test_set_2(self):
-        segments = IntensitySegments()
+        segments: IntensitySegments = IntensitySegmentsImpl()
         self.assertEqual(segments.toString(), [])
         segments.add(10, 30, 2)
         self.assertEqual(segments.toString(), [[10, 2], [30, 0]])
@@ -56,7 +56,7 @@ class TestIntensitySegments(unittest.TestCase):
         self.assertEqual(segments.toString(), [])
 
     def test_set_2(self):
-        segments = IntensitySegments()
+        segments: IntensitySegments = IntensitySegmentsImpl()
         self.assertEqual(segments.toString(), [])
         segments.add(10, 30, 1)
         self.assertEqual(segments.toString(), [[10, 1], [30, 0]])
@@ -66,7 +66,7 @@ class TestIntensitySegments(unittest.TestCase):
         self.assertEqual(segments.toString(), [[10, 1], [20, 3], [40, 0]])
 
     def test_set_1(self):
-        segments = IntensitySegments()
+        segments: IntensitySegments = IntensitySegmentsImpl()
         self.assertEqual(segments.toString(), [])
         segments.add(10, 30, 1)
         self.assertEqual(segments.toString(), [[10, 1], [30, 0]])
