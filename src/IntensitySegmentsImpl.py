@@ -1,28 +1,27 @@
 from functools import cmp_to_key
-from typing import Dict, Optional
+from sortedcontainers import SortedDict
 
 from src.IntensitySegments import IntensitySegments
 
 
 class IntensitySegmentsImpl(IntensitySegments):
-    segments: Dict[int, Optional[int]]
+    segments: SortedDict[int, int]
 
     def __init__(self):
-        self.segments = {}
+        self.segments = SortedDict()
 
     def add(self, from_idx: int, to_idx: int, amount: int):
         self._update_segment(from_idx, amount)
         self._update_segment(to_idx, -amount)
-        print(self.segments)
 
     def set(self, from_idx: int, to_idx: int, amount: int):
         current_intensity = 0
         if from_idx not in self.segments:
-            self._update_segment(from_idx, None)
+            self._update_segment(from_idx, 0)
         if to_idx not in self.segments:
-            self._update_segment(to_idx, None)
-        sorted_segments = sorted(self.segments.items(), key=cmp_to_key(lambda a, b: a[0] - b[0]))
-        for position, change in sorted_segments:
+            self._update_segment(to_idx, 0)
+        segments = sorted(self.segments.items(), key=cmp_to_key(lambda a, b: a[0] - b[0]))
+        for position, change in segments:
             if position < from_idx:
                 current_intensity += change
             elif position == from_idx:
@@ -40,8 +39,8 @@ class IntensitySegmentsImpl(IntensitySegments):
     def toString(self):
         result = []
         current_intensity = 0
-        sorted_segments = sorted(self.segments.items(), key=cmp_to_key(lambda a, b: a[0] - b[0]))
-        for position, change in sorted_segments:
+        # sorted_segments = sorted(self.segments.items(), key=cmp_to_key(lambda a, b: a[0] - b[0]))
+        for position, change in self.segments.items():
             current_intensity += change
             if current_intensity != 0 or len(result) != 0:
                 result.append([position, current_intensity])
@@ -49,8 +48,8 @@ class IntensitySegmentsImpl(IntensitySegments):
             result.pop(-1)
         return result
 
-    def _update_segment(self, position: int, amount: Optional[int]):
-        if amount is None or position not in self.segments:
+    def _update_segment(self, position: int, amount: int):
+        if position not in self.segments:
             self.segments[position] = amount
         else:
             self.segments[position] = self.segments[position] + amount

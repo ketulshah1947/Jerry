@@ -20,8 +20,18 @@ Before running the tests, make sure you have the following installed:
    ```bash
    cd /path/to/your/project
 
-3. **Run the Tests**:
-   Once you're in the project directory, use the following command to run your Python tests:
+3. **Install dependencies**:
+   Once you're in the project directory, use following command to install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   or 
+   ```bash
+   pip3 install -r requirements.txt
+   ```
+
+4. **Run the Tests**:
+   Use the following command to run your Python tests:
    ```bash
    python -m unittest tests/IntensitySegmentsTests.py
    ```
