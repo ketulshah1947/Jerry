@@ -20,7 +20,9 @@ class IntensitySegmentsImpl(IntensitySegments):
             self._update_segment(from_idx, 0)
         if to_idx not in self.segments:
             self._update_segment(to_idx, 0)
-        segments = sorted(self.segments.items(), key=cmp_to_key(lambda a, b: a[0] - b[0]))
+        segments = list(self.segments.items())
+        print(self.segments)
+        print(segments)
         for position, change in segments:
             if position < from_idx:
                 current_intensity += change
@@ -39,7 +41,6 @@ class IntensitySegmentsImpl(IntensitySegments):
     def toString(self):
         result = []
         current_intensity = 0
-        # sorted_segments = sorted(self.segments.items(), key=cmp_to_key(lambda a, b: a[0] - b[0]))
         for position, change in self.segments.items():
             current_intensity += change
             if current_intensity != 0 or len(result) != 0:
