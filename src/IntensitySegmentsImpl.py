@@ -21,8 +21,6 @@ class IntensitySegmentsImpl(IntensitySegments):
         if to_idx not in self.segments:
             self._update_segment(to_idx, 0)
         segments = list(self.segments.items())
-        print(self.segments)
-        print(segments)
         for position, change in segments:
             if position < from_idx:
                 current_intensity += change
